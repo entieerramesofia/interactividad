@@ -1,4 +1,7 @@
 body {
 
     transition: bckground-color 1s ease-in-out;
+    padding: 0;
+    margin: 0;
+
 }
