@@ -18,3 +18,4 @@ function draw() {
 
   rect(mouseX, mouseY, size, size);
 }
+
