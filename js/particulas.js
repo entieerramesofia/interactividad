@@ -1,8 +1,8 @@
 var particles = [];
 var noiseImg, bgColor, targetBgColor, particleColor, targetParticleColor;
 var noiseX = 0, noiseY = 0, targetNoiseX = 0, targetNoiseY = 0;
-var n = 3000, noiseScale = 100, repelRadius = 130, repelStrength = 8;
-var particleShape = 0, targetParticleShape = 0, particleSize = 4, targetParticleSize = 4;
+var n = 4000, noiseScale = 10, repelRadius = 100, repelStrength = 8;
+var particleShape = 0, targetParticleShape = 0, particleSize = 2, targetParticleSize = 4;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -36,7 +36,7 @@ function mouseMoved() {
   targetBgColor = color(random(255), random(255), random(255));
   targetParticleColor = color(random(255), random(255), random(255));
   targetParticleShape = floor(random(3));
-  targetParticleSize = random(3, 9);
+  targetParticleSize = random(7, 9);
   targetNoiseX = map(mouseX, 0, width, -width * 0.25, width * 0.25);
   targetNoiseY = map(mouseY, 0, height, -height * 0.25, height * 0.25);
   drawNoiseLayer(80);
@@ -78,13 +78,16 @@ function drawParticle(x, y) {
     circle(x, y, particleSize);
     return;
   }
-  if (particleShape == 1) {
     rectMode(CENTER);
-    square(x, y, particleSize);
-    return;
-  }
-  triangle(x, y - particleSize * 0.6, x - particleSize * 0.55, y + particleSize * 0.45, x + particleSize * 0.55, y + particleSize * 0.45);
+
+
+    
+  
 }
+
+
+
+
 
 function repelFromMouse(particle) {
   var away = p5.Vector.sub(particle.pos, createVector(mouseX, mouseY));
@@ -109,8 +112,8 @@ function updateBackgroundColor() {
 }
 
 function drawNoiseLayer(alphaValue) {
-  var x = noiseX - (noiseImg.width - width) * 0.5;
-  var y = noiseY - (noiseImg.height - height) * 0.5;
+  var x = noiseX - (noiseImg.width - width) * 0.3;
+  var y = noiseY - (noiseImg.height - height) * 0.3;
   tint(255, alphaValue);
   image(noiseImg, x, y);
 }
