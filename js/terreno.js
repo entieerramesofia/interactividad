@@ -5,23 +5,27 @@ let xoff = 0; let yoff = 0; let inc = 0.1;
 let zoff = 0;
 
 function setup() {
-  createCanvas(400, 400, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   rectMode(CENTER);
   angleMode(DEGREES);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
   background(220);
   
   rotateX(-45);
-  rotateY(45);
+  rotateY(50);
   
   xoff = 0;
   for (let i=0; i<cols; i++){
     sizes[i] = [];
     yoff = 0;
     for (let j=0; j<rows; j++){
-      sizes[i][j] = map(noise(xoff, yoff, zoff), 0, 1, 0, 100);
+      sizes[i][j] = map(noise(xoff, yoff, zoff), 0, 1, 0, 300);
       yoff += inc;
       
       let r = noise(zoff) * 255;
@@ -33,7 +37,7 @@ function draw() {
       push();
       translate(i*size - 100, sizes[i][j], j*size - 100);
       // You can also put the second argument 100 with sizes[i][j] in the box() function instead of the translate function 
-      box(size, 100, size); 
+      box(size, 300, size); 
       pop();
        
       
